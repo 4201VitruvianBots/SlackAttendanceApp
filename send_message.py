@@ -2,12 +2,20 @@ import json
 from datetime import datetime, timedelta
 from googleapiclient.discovery import build
 from googleapiclient.errors import HttpError
+<<<<<<< HEAD
 import slack_sdk
+=======
+import slack
+>>>>>>> d06169f... First Test
 
 # Slack WebClient setup
 SLACK_TOKEN = "xapp-1-A04J98U25HB-4626718325364-4028b5f85c23ed41a59ae36e07c078909e7b74778f86caff488662076713b14f"
 SLACK_CHANNEL_ID = "C042W0PRHNX"
+<<<<<<< HEAD
 client = slack_sdk.WebClient(token=SLACK_TOKEN)
+=======
+client = slack.WebClient(token=SLACK_TOKEN)
+>>>>>>> d06169f... First Test
 
 # Google Calendar setup
 GOOGLE_CALENDAR_API_KEY = "AIzaSyD1F7rfyKEY_lHNC4jVektCvb5AtcEs5Io"
