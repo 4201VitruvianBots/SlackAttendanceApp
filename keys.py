@@ -1,0 +1,6 @@
+
+SLACK_TOKEN = "xoxb-15895572898-4645905684388-U3TYcws3JopuWYXcvEuatJwM"
+SLACK_TEST_CHANNEL_ID = "D04KM43AMU0"
+SLACK_CHANNEL_ID = "C042W0PRHNX"
+GOOGLE_CALENDAR_API_KEY = "AIzaSyD1F7rfyKEY_lHNC4jVektCvb5AtcEs5Io"
+calendar_id = "c_ee3scrgsfn037jhf3r2epv3kpg@group.calendar.google.com"
