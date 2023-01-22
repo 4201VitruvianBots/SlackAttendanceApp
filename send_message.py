@@ -16,7 +16,7 @@ GOOGLE_CALENDAR_API_KEY = keys.GOOGLE_CALENDAR_API_KEY
 calendar_service = build('calendar', 'v3', developerKey=GOOGLE_CALENDAR_API_KEY)
 calendar_id = keys.calendar_id
 
-link = "https://www.google.com/calendar/event?eid=Nm45bWJuMnAyNHA4NzN2cGQ4OWczN3AxcDRfMjAyMzAxMjJUMjIwMDAwWiBjX2VlM3NjcmdzZm4wMzdqaGYzcjJlcHYza3BnQGc"
+link = "https://calendar.google.com/calendar/u/0/embed?src=c_ee3scrgsfn037jhf3r2epv3kpg@group.calendar.google.com&ctz=America/Los_Angeles"
 
 parser = argparse.ArgumentParser()
 parser.add_argument('-d', dest='debug', action='store_true', default=False, help='Start in Debug Mode')
