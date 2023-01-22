@@ -22,16 +22,25 @@ parser = argparse.ArgumentParser()
 parser.add_argument('-d', dest='debug', action='store_true', default=False, help='Start in Debug Mode')
 args = parser.parse_args()
 
+def pull_slack_messages():
+    messages = {
+        'id': 1,
+        'poster': 'test',
+        'timestamp': 0,
+        'message': 'messageText'
+    }
+    return messages
 
 def send_slack_post(event_name, start_time, end_time):
     # Send message to Slack using the Web API
-    message = f'{event_name} starting five days from now {start_time}-{end_time}. <{link}|Team Calendar>'
+    message = f'<{link}|{event_name}> \n \t {start_time}-{end_time}'
     response = ""
     if args.debug:
         response = client.chat_postMessage(channel=SLACK_TEST_CHANNEL_ID, text=message)
     else:
         response = client.chat_postMessage(channel=SLACK_CHANNEL_ID, text=message)
     return response
+
 
 def get_next_week_events():
     now = datetime.utcnow().isoformat() + 'Z'  # 'Z' indicates UTC time
@@ -43,15 +52,20 @@ def get_next_week_events():
     if not events:
         print('No upcoming events found.')
     else:
+        messages = pull_slack_messages()
+
         for event in events:
             start = event['start'].get('dateTime')
-            start_time = datetime.fromisoformat(start).strftime("%-m/%d/%y %-I:%M %p")
+            start_time = datetime.fromisoformat(start).strftime("%A, %-m/%d/%y %-I:%M %p")
             end = event['end'].get('dateTime')
             end_time = datetime.fromisoformat(end).strftime("%-I:%M %p")
             event_name = event['summary']
-            send_slack_post(event_name, start_time, end_time)
-            print("sent message")
+            if event_name not in messages:
+                send_slack_post(event_name, start_time, end_time)
+                print("sent message")
+            else:
+                print("Event already posted {}".format(event_name))
+
 
 if __name__ == '__main__':
     get_next_week_events()
-
